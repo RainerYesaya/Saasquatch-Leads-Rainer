@@ -1,59 +1,79 @@
-🏢 Lead Generation Dashboard
+Oke, ini versi yang sudah aku rapikan dan diberi format Markdown yang konsisten supaya README-mu terlihat profesional di GitHub:
+
+---
+
+````markdown
+# 🏢 Lead Generation Dashboard
 
 A web application for managing company leads.
+
 It includes:
 
-* **Lead Scoring** with a trained `RandomForestClassifier`
-* **Company Finder** with duplicate detection
-* **Interactive Dashboard** showing lead statistics and charts
-* **CSV dataset-based search & filtering**
+- **Lead Scoring** with a trained `RandomForestClassifier`
+- **Company Finder** with duplicate detection
+- **Interactive Dashboard** showing lead statistics and charts
+- **CSV dataset-based search & filtering**
+
+---
 
 ## 📦 Features
 
-* **Company Search**: Filter companies by industry and location.
-* **Lead Management**: Add, view, and remove leads.
-* **Duplicate Detection**: Prevents duplicate leads with similarity checking.
-* **Lead Scoring Model**: Predicts lead quality using machine learning.
-* **Dashboard Analytics**: Displays total leads, average lead score, distribution charts, and top industries.
+- **Company Search**: Filter companies by industry and location
+- **Lead Management**: Add, view, and remove leads
+- **Duplicate Detection**: Prevents duplicate leads with similarity checking
+- **Lead Scoring Model**: Predicts lead quality using machine learning
+- **Dashboard Analytics**: Displays total leads, average lead score, distribution charts, and top industries
+
+---
 
 ## ⚙️ Requirements
 
-* Python **3.8+**
-* `pip` package manager
+- Python **3.8+**
+- `pip` package manager
+
+---
 
 ## 📥 Installation
 
-1. **Clone the repository**
+### 1️⃣ Clone the repository
 
-   git clone https://github.com/RainerYesaya/Saasquatch-Leads-Rainer.git
+```bash
+git clone https://github.com/RainerYesaya/Saasquatch-Leads-Rainer.git
+cd Saasquatch-Leads-Rainer
+````
 
-2. **Create a virtual environment (optional but recommended)**
+### 2️⃣ Create a virtual environment (optional but recommended)
 
-   ```
-   python -m venv venv
-   source venv/bin/activate  # On macOS/Linux
-   venv\Scripts\activate     # On Windows
-   ```
+```bash
+python -m venv venv
+source venv/bin/activate   # On macOS/Linux
+venv\Scripts\activate      # On Windows
+```
 
-3. **Install dependencies**
+### 3️⃣ Install dependencies
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+pip install -r requirements.txt
+```
 
-4. **Prepare dataset**
+### 4️⃣ Prepare dataset
 
-   * Place your `Companies.csv` file in the `data/` folder.
-   * Ensure it contains required columns like:
-     `id, company_name, website, industry, company_size, revenue_range, location, technologies, contact_name, contact_title, contact_email, contact_phone, email_response, website_visits, content_downloads, meeting_booked, last_contact_date, lead_score, is_duplicate, match_with_company_id`
+* Place your `Companies.csv` file in the `data/` folder
+* Ensure it contains these required columns:
+
+```
+id, company_name, website, industry, company_size, revenue_range, location, technologies, contact_name, contact_title, contact_email, contact_phone, email_response, website_visits, content_downloads, meeting_booked, last_contact_date, lead_score, is_duplicate, match_with_company_id
+```
 
 ---
-🤖 Train the Lead Scoring Model
 
-Run this on your terminal :
+## 🤖 Train the Lead Scoring Model
 
+Run:
+
+```bash
 python train_model.py
-
+```
 
 This will:
 
@@ -61,10 +81,31 @@ This will:
 * Train the `RandomForestClassifier`
 * Save `lead_scoring_model.pkl` and `label_encoders.pkl` in the `models/` folder
 
-🚀 Run the Application
+---
+
+## 🚀 Run the Application
 
 Start the Flask server:
-open you terminal and write : python app.py
 
+```bash
+python app.py
+```
 
-Mau saya buatkan?
+Then open your browser and go to:
+
+```
+http://127.0.0.1:5000
+```
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+```
+
+---
+
+Kalau mau, aku juga bisa sekalian tambahkan **Project Structure** di README ini supaya orang yang baca langsung paham isi folder dan file-nya.  
+```
