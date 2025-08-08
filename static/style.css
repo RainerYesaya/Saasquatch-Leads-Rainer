@@ -1,0 +1,52 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.dashboard .stat-card {
+    text-align: center;
+    height: 100%;
+}
+
+.dashboard .stat-card .card-title {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.dashboard .stat-card .display-4 {
+    font-size: 2.5rem;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.progress {
+    height: 25px;
+}
+
+.progress-bar {
+    font-weight: bold;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.card {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.table-success {
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+.modal-body ul {
+    max-height: 300px;
+    overflow-y: auto;
+}

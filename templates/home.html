@@ -1,0 +1,275 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="dashboard">
+    <h1 class="mb-4">Leads Dashboard</h1>
+   
+    {% if not stats %}
+        <div class="alert alert-info">
+            <h4>No leads added yet</h4>
+            <p>Go to <a href="/scraper">Company Finder</a> to add your first lead</p>
+        </div>
+    {% else %}
+        <div class="row mb-4">
+            <!-- Stats Cards -->
+            <div class="col-md-4">
+                <div class="card stat-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Leads</h5>
+                        <h2 class="display-4">{{ stats.total_leads }}</h2>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-md-4">
+                <div class="card stat-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Meetings Booked</h5>
+                        <h2 class="display-4">{{ stats.meeting_booked.get('Yes', 0) }}</h2>
+                        <p class="text-muted">Out of {{ stats.total_leads }} leads</p>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-md-4">
+                <div class="card stat-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Conversion Rate</h5>
+                        <h2 class="display-4">
+                            {{ "%.1f"|format(stats.meeting_booked.get('Yes', 0) / stats.total_leads * 100 if stats.total_leads > 0 else 0) }}%
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Charts Row -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Lead Score Distribution</h5>
+                        <canvas id="scoreChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Top Industries</h5>
+                        <canvas id="industryChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Leads Table -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Your Priority Leads</h5>
+                <span class="badge bg-primary">{{ stats.total_leads }} leads</span>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Company</th>
+                                <th>Industry</th>
+                                <th>Location</th>
+                                <th>Contact Name</th>
+                                <th>Contact Email</th>
+                                <th>Contact Phone</th>
+                                <th>Lead Score</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for lead in top_leads %}
+                            <tr class="{{ 'table-success' if lead['meeting_booked'] == 'Yes' else '' }}">
+                                <td>{{ loop.index }}</td>
+                                <td>{{ lead['company_name'] }}</td>
+                                <td>{{ lead['industry'] }}</td>
+                                <td>{{ lead['location'] }}</td>
+                                <td>{{ lead['contact_name'] }}</td>
+                                <td>{{ lead['contact_email'] }}</td>
+                                <td>{{ lead['contact_phone'] }}</td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar
+                                            {% if lead['lead_score'] >= 80 %}bg-success
+                                            {% elif lead['lead_score'] >= 50 %}bg-warning
+                                            {% else %}bg-danger
+                                            {% endif %}"
+                                            role="progressbar"
+                                            style="width: {{ lead['lead_score'] }}%"
+                                            aria-valuenow="{{ lead['lead_score'] }}"
+                                            aria-valuemin="0"
+                                            aria-valuemax="100">
+                                            {{ "%.1f"|format(lead['lead_score']) }}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-danger remove-lead"
+                                            data-id="{{ lead['id'] }}">
+                                        Remove
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+
+<!-- Duplicate Modal -->
+<div class="modal fade" id="duplicateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Potential Duplicate Found</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>We found similar companies in our database:</p>
+                <ul id="duplicateList" class="list-group mb-3"></ul>
+                <p>Do you still want to add this company?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmAdd">Add Anyway</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+
+
+{% if stats %}
+// Lead Score Distribution Chart
+const scoreCtx = document.getElementById('scoreChart').getContext('2d');
+new Chart(scoreCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['High Rate Leads (80-100)', 'Medium Rate Leads (50-79)', 'Low Rate Leads (<50)'],
+        datasets: [{
+            data: [
+                {{ stats.lead_score_distribution['Hot (80-100)'] }},
+                {{ stats.lead_score_distribution['Warm (50-79)'] }},
+                {{ stats.lead_score_distribution['Cold (<50)'] }}
+            ],
+            backgroundColor: [
+                '#28a745',
+                '#ffc107',
+                '#dc3545'
+            ]
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }
+});
+
+
+// Industry Distribution Chart
+const industryCtx = document.getElementById('industryChart').getContext('2d');
+new Chart(industryCtx, {
+    type: 'bar',
+    data: {
+        labels: {{ stats.top_industries.keys()|list|tojson }},
+        datasets: [{
+            label: 'Number of Companies',
+            data: {{ stats.top_industries.values()|list|tojson }},
+            backgroundColor: '#007bff'
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+{% endif %}
+
+
+// Remove lead functionality
+document.querySelectorAll('.remove-lead').forEach(button => {
+    button.addEventListener('click', function() {
+        if (confirm('Are you sure you want to remove this lead?')) {
+            const companyId = this.dataset.id;
+           
+            fetch('/remove_lead', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `company_id=${companyId}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.reload();
+                }
+            });
+        }
+    });
+});
+
+
+document.querySelectorAll('.add-lead').forEach(button => {
+    button.addEventListener('click', function() {
+        const companyId = this.dataset.id;
+        const clickedButton = this;
+       
+        fetch('/add_lead', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `company_id=${companyId}`
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text) });
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'success') {
+                window.location.reload();
+            } else if (data.status === 'duplicate') {
+                showDuplicateModal(data.company, data.duplicates);
+            } else {
+                console.error('Unexpected status:', data.status, data.message);
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('An error occurred: ' + error.message);
+        });
+    });
+});
+</script>
+{% endblock %}

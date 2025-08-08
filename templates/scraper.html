@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="scraper">
+    <h1 class="mb-4">Company Finder</h1>
+   
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="POST">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="industry" class="form-label">Industry</label>
+                        <input type="text" class="form-control" id="industry" name="industry"
+                               list="industryOptions" placeholder="Start typing...">
+                        <datalist id="industryOptions">
+                            {% for industry in industries %}
+                            <option value="{{ industry }}">
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="location" name="location"
+                               list="locationOptions" placeholder="Start typing...">
+                        <datalist id="locationOptions">
+                            {% for location in locations %}
+                            <option value="{{ location }}">
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Search Companies</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    {% if search %}
+        {% if companies %}
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Search Results ({{ companies|length }} found)</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Company</th>
+                                    <th>Industry</th>
+                                    <th>Location</th>
+                                    <th>Size</th>
+                                    <th>Revenue</th>
+                                    <th>Website</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for company in companies %}
+                                <tr>
+                                    <td>{{ company['company_name'] }}</td>
+                                    <td>{{ company['industry'] }}</td>
+                                    <td>{{ company['location'] }}</td>
+                                    <td>{{ company['company_size'] }}</td>
+                                    <td>{{ company['revenue_range'] }}</td>
+                                    <td>{{ company['website'] }}</td>
+                                    <td>
+                                        {# Pastikan user_leads tersedia di template #}
+                                        {% if company['id'] in user_leads %}
+                                            <span class="badge bg-success">Added</span>
+                                        {% else %}
+                                            <button class="btn btn-sm btn-primary add-lead"
+                                                    data-id="{{ company['id'] }}">
+                                                Add as Lead
+                                            </button>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-warning">
+                No companies found matching your criteria.
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+
+
+
+
+
+<div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body text-center p-4">
+                <div class="mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#28a745" class="bi bi-check-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                    </svg>
+                </div>
+                <h4>Lead Added Successfully</h4>
+                <p class="mb-4">The company has been added to your leads dashboard</p>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="duplicateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Potential Duplicate Found</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>We found similar companies already in your leads:</p>
+                <ul id="duplicateList" class="list-group mb-3"></ul>
+                <p>Do you still want to add this company?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmAdd">Add Anyway</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+function showDuplicateModal(companyToAdd, duplicates) {
+    const list = document.getElementById('duplicateList');
+    list.innerHTML = '';
+   
+    duplicates.forEach(dup => {
+        const listItem = document.createElement('li');
+        listItem.className = 'list-group-item';
+        listItem.innerHTML = `
+            <strong>${dup.name}</strong><br>
+            Industry: ${dup.industry}<br>
+            Location: ${dup.location}<br>
+            Similarity: ${dup.score}%
+        `;
+        list.appendChild(listItem);
+    });
+   
+    document.getElementById('confirmAdd').onclick = function() {
+        fetch('/add_lead', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `company_id=${companyToAdd.id}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.status === 'success') {
+                const duplicateModal = bootstrap.Modal.getInstance(document.getElementById('duplicateModal'));
+                if (duplicateModal) duplicateModal.hide();
+               
+                $('#successModal').modal('show');
+               
+                
+                const originalButton = document.querySelector(`.add-lead[data-id="${companyToAdd.id}"]`);
+                if (originalButton) {
+                    originalButton.replaceWith('<span class="badge bg-success">Added</span>');
+                }
+            } else {
+                console.error('Failed to add lead:', data.message); 
+            }
+        })
+        .catch(error => {
+            console.error('Error adding lead after confirmation:', error);
+        });
+    };
+   
+    
+    new bootstrap.Modal(document.getElementById('duplicateModal')).show();
+}
+
+
+
+
+document.querySelectorAll('.add-lead').forEach(button => {
+    button.addEventListener('click', function() {
+        const companyId = this.dataset.id;
+        const clickedButton = this; 
+        fetch('/add_lead', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `company_id=${companyId}`
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text) });
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'success') {
+                clickedButton.replaceWith('<span class="badge bg-success">Added</span>');
+                $('#successModal').modal('show');
+            } else if (data.status === 'duplicate') {
+                showDuplicateModal(data.company, data.duplicates);
+            } else {
+                console.error('Unexpected status:', data.status, data.message);
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('An error occurred: ' + error.message); 
+        });
+    });
+});
+</script>
+{% endblock %}

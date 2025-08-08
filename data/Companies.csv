@@ -1,0 +1,51 @@
+﻿id,company_name,website,industry,company_size,revenue_range,location,technologies,contact_name,contact_title,contact_email,contact_phone,email_response,website_visits,content_downloads,meeting_booked,last_contact_date,lead_score,is_duplicate,match_with_company_id
+1,Tesla Inc.,tesla.com,Automotive/Energy,10000+,$80B+,Austin TX,"Salesforce, AWS, LinkedIn Ads",Sarah Mitchell,Director of Procurement,sarah.mitchell@tesla.com,(512) 555-0198,Yes,15,3,No,10/15/2023,87,No,
+2,Tesla Motors,teslamotors.com,Automotive,10000+,$80B+,Palo Alto CA,"AWS, Marketo, SAP",John Chen,VP Operations,john.chen@teslamotors.com,(650) 555-0123,No,8,1,No,11/2/2023,85,Yes,1
+3,Patagonia LLC,patagonia.com,Retail,2000+,$1B+,Ventura CA,"Shopify, Google Analytics",David Reynolds,Sustainability Manager,d.reynolds@patagonia.com,(805) 555-0123,Yes,22,5,Yes,9/28/2023,92,No,
+4,Patagonia Inc.,patagonia-inc.com,Outdoor Retail,2000+,$1B+,Ventura California,"Shopify, HubSpot",Rachel Park,Procurement Lead,rachel.p@patagonia-inc.com,(805) 555-0187,No,12,2,No,10/30/2023,88,Yes,3
+5,Salesforce,salesforce.com,Technology,70000+,$30B+,San Francisco CA,"Own Products, Tableau",Marc Benioff,CEO,marc@salesforce.com,(415) 555-0101,No,45,7,Yes,11/10/2023,95,No,
+6,SFDC,sfdc.com,Cloud Computing,70000+,$30B+,SF CA,"MuleSoft, Slack",Amy Johnson,VP Sales,amy.j@sfdc.com,(415) 555-0155,Yes,38,4,No,11/12/2023,93,Yes,5
+7,Whole Foods,wholefoodsmarket.com,Retail/Grocery,100000+,$20B+,Austin TX,"Oracle, Workday",Michael Carter,Supply Chain Manager,michael.c@wholefoods.com,(512) 555-0189,No,18,2,No,10/22/2023,76,No,
+8,Whole Foods Market,wholefoods.com,Grocery,100000+,$20B+,Austin Texas,"Workday, SAP",Jennifer Lopez,Procurement Director,j.lopez@wholefoods.com,(512) 555-0190,Yes,25,3,Yes,11/5/2023,82,Yes,7
+9,Airbnb,airbnb.com,Travel Tech,6000+,$6B+,San Francisco CA,"React, AWS",Brian Chesky,CEO,brian@airbnb.com,(415) 555-0167,No,30,5,No,10/18/2023,84,No,
+10,Airbnb Inc.,airbnb-inc.com,Hospitality Tech,6000+,$6B+,SF CA,"AWS, Kubernetes",Nathan Lee,Director of Biz Dev,nathan.lee@airbnb-inc.com,(415) 555-0178,Yes,28,6,Yes,11/8/2023,89,Yes,9
+11,Microsoft Corp.,microsoft.com,Software,200000+,$200B+,Redmond WA,"Azure, Office 365",Satya Nadella,CEO,satya@microsoft.com,(425) 555-0100,Yes,120,15,Yes,11/15/2023,98,No,
+12,Microsoft Corporation,microsoft-co.com,Technology,200000+,$200B+,Redmond Washington,"Windows, LinkedIn",Lisa Monroe,Enterprise Sales,lisa.m@microsoft-co.com,(425) 555-0150,No,95,12,No,11/14/2023,96,Yes,11
+13,Amazon Inc.,amazon.com,E-commerce,1600000+,$500B+,Seattle WA,"AWS, Kinde",Andy Jassy,CEO,andy@amazon.com,(206) 555-0101,No,200,25,Yes,11/20/2023,99,No,
+14,Amazon.com,amazon-internet.com,Retail Tech,1600000+,$500B+,Seattle Washington,"AWS, Twitch",Maria Garcia,VP Retail,maria.g@amazon-internet.com,(206) 555-0151,Yes,180,20,No,11/18/2023,97,Yes,13
+15,Google,google.com,Internet,160000+,$300B+,Mountain View CA,"Google Cloud, Android",Sundar Pichai,CEO,sundar@google.com,(650) 555-0102,No,150,18,Yes,11/16/2023,97,No,
+16,Alphabet Inc.,alphabet.com,Technology,160000+,$300B+,Mountain View California,"Google, Verily",Ruth Porat,CFO,ruth@alphabet.com,(650) 555-0152,Yes,130,15,No,11/17/2023,95,Yes,15
+17,Apple Inc.,apple.com,Consumer Electronics,160000+,$400B+,Cupertino CA,"iOS, MacOS",Tim Cook,CEO,tim@apple.com,(408) 555-0103,Yes,110,12,Yes,11/12/2023,96,No,
+18,Apple Computers,apple-computers.com,Hardware,160000+,$400B+,Cupertino California,"Mac, iPhone",Jeff Williams,COO,jeff@apple-computers.com,(408) 555-0153,No,105,10,No,11/10/2023,94,Yes,17
+19,Nike,nike.com,Sportswear,80000+,$50B+,Beaverton OR,"SAP, Salesforce",John Donahoe,CEO,john@nike.com,(503) 555-0104,No,80,8,No,11/5/2023,88,No,
+20,Nike Inc.,nikeinc.com,Athletic Apparel,80000+,$50B+,Portland OR,"Salesforce, Adobe",Ann Miller,VP Marketing,ann@nikeinc.com,(503) 555-0154,Yes,75,7,Yes,11/8/2023,90,Yes,19
+21,Starbucks,starbucks.com,Food & Beverage,400000+,$30B+,Seattle WA,"Square, Oracle",Kevin Johnson,CEO,kevin@starbucks.com,(206) 555-0105,Yes,65,6,Yes,11/3/2023,89,No,
+22,Starbucks Coffee,starbucks-coffee.com,Coffee Retail,400000+,$30B+,Seattle Washington,"Oracle, Workday",Roz Brewer,COO,roz@starbucks-coffee.com,(206) 555-0155,No,60,5,No,11/1/2023,87,Yes,21
+23,Walmart,walmart.com,Retail,2300000+,$600B+,Bentonville AR,"SAP, Azure",Doug McMillon,CEO,doug@walmart.com,(479) 555-0106,No,90,9,No,10/30/2023,85,No,
+24,Walmart Stores,walmartstores.com,Big Box Retail,2300000+,$600B+,Bentonville Arkansas,"Azure, GSuite",Judith McKenna,COO,judith@walmartstores.com,(479) 555-0156,Yes,85,8,Yes,11/2/2023,87,Yes,23
+25,Netflix,netflix.com,Entertainment,12000+,$30B+,Los Gatos CA,"AWS, React",Reed Hastings,Co-CEO,reed@netflix.com,(408) 555-0107,No,70,7,No,10/28/2023,84,No,
+26,Netflix Inc.,netflixinc.com,Streaming,12000+,$30B+,Los Gatos California,"AWS, Python",Ted Sarandos,Co-CEO,ted@netflixinc.com,(408) 555-0157,Yes,68,6,Yes,10/30/2023,86,Yes,25
+27,Adobe,adobe.com,Software,25000+,$15B+,San Jose CA,"Creative Cloud, PDF",Shantanu Narayen,CEO,shantanu@adobe.com,(408) 555-0108,Yes,55,5,Yes,10/25/2023,90,No,
+28,Adobe Systems,adobe-systems.com,Digital Media,25000+,$15B+,San Jose California,"Photoshop, Acrobat",David Wadhwani,President,david@adobe-systems.com,(408) 555-0158,No,50,4,No,10/27/2023,88,Yes,27
+29,Intel,intel.com,Semiconductors,110000+,$70B+,Santa Clara CA,"Chipset, IoT",Pat Gelsinger,CEO,pat@intel.com,(408) 555-0109,No,45,4,No,10/20/2023,82,No,
+30,Intel Corporation,intel-corp.com,Hardware,110000+,$70B+,Santa Clara California,"Processors, Altera",Sandra Rivera,EVB,sandra@intel-corp.com,(408) 555-0159,Yes,42,3,Yes,10/22/2023,84,Yes,29
+31,IBM,ibm.com,Technology,350000+,$60B+,Armonk NY,"Watson, Cloud",Arvind Krishna,CEO,arvind@ibm.com,(914) 555-0110,No,40,3,No,10/18/2023,80,No,
+32,International Business Machines,ibm-systems.com,IT Services,350000+,$60B+,Armonk New York,"Mainframe, Red Hat",Jim Whitehurst,President,jim@ibm-systems.com,(914) 555-0160,Yes,38,2,Yes,10/20/2023,82,Yes,31
+33,Oracle,oracle.com,Database Software,130000+,$40B+,Austin TX,"Java, ERP",Larry Ellison,CTO,larry@oracle.com,(512) 555-0111,Yes,35,3,Yes,10/15/2023,85,No,
+34,Oracle Corporation,oracle-corp.com,Enterprise Software,130000+,$40B+,Austin Texas,"MySQL, NetSuite",Safra Catz,CEO,safra@oracle-corp.com,(512) 555-0161,No,32,2,No,10/17/2023,83,Yes,33
+35,Cisco,cisco.com,Networking,80000+,$50B+,San Jose CA,"Webex, Meraki",Chuck Robbins,CEO,chuck@cisco.com,(408) 555-0112,No,30,2,No,10/12/2023,78,No,
+36,Cisco Systems,cisco-systems.com,IT Infrastructure,80000+,$50B+,San Jose California,"Networking, Security",Maria Martinez,CTO,maria@cisco-systems.com,(408) 555-0162,Yes,28,1,Yes,10/14/2023,80,Yes,35
+37,Verizon,verizon.com,Telecom,130000+,$130B+,New York NY,"5G, Fios",Hans Vestberg,CEO,hans@verizon.com,(212) 555-0113,No,25,1,No,10/10/2023,75,No,
+38,Verizon Communications,verizonwireless.com,Wireless Services,130000+,$130B+,New York New York,"Wireless, IoT",Ronan Dunne,EVB,ronan@verizonwireless.com,(212) 555-0163,Yes,22,1,Yes,10/11/2023,77,Yes,37
+39,AT&T,att.com,Telecommunications,230000+,$170B+,Dallas TX,"DirecTV, WarnerMedia",John Stankey,CEO,john@att.com,(214) 555-0114,Yes,20,1,Yes,10/5/2023,76,No,
+40,AT&T Inc.,att-inc.com,Media & Telecom,230000+,$170B+,Dallas Texas,"HBO Max, Fiber",Jeff McElfresh,COO,jeff@att-inc.com,(214) 555-0164,No,18,1,No,10/8/2023,74,Yes,39
+41,Dell,dell.com,Computer Hardware,150000+,$100B+,Round Rock TX,"EMC, VMware",Michael Dell,CEO,michael@dell.com,(512) 555-0115,No,15,1,No,10/3/2023,72,No,
+42,Dell Technologies,dell-tech.com,IT Solutions,150000+,$100B+,Round Rock Texas,"Servers, Storage",Jeff Clarke,COO,jeff@dell-tech.com,(512) 555-0165,Yes,12,1,Yes,10/6/2023,74,Yes,41
+43,HP,hp.com,Computer Hardware,60000+,$60B+,Palo Alto CA,"Printers, PCs",Enrique Lores,CEO,enrique@hp.com,(650) 555-0116,Yes,10,1,Yes,10/1/2023,73,No,
+44,Hewlett-Packard,hp-enterprise.com,Enterprise IT,60000+,$60B+,Palo Alto California,"Workstations, Services",Antonio Neri,President,antonio@hp-enterprise.com,(650) 555-0166,No,8,1,No,10/4/2023,71,Yes,43
+45,T-Mobile,t-mobile.com,Wireless,75000+,$80B+,Bellevue WA,"5G, Sprint",Mike Sievert,CEO,mike@t-mobile.com,(425) 555-0117,No,5,0,No,9/28/2023,68,No,
+46,T-Mobile US,t-mobileus.com,Mobile Carrier,75000+,$80B+,Bellevue Washington,"Un-carrier, Metro",Callie Field,CSO,callie@t-mobileus.com,(425) 555-0167,Yes,3,0,Yes,9/30/2023,70,Yes,45
+47,Comcast,comcast.com,Cable/Media,190000+,$120B+,Philadelphia PA,"Xfinity, NBC",Brian Roberts,CEO,brian@comcast.com,(215) 555-0118,No,2,0,No,9/25/2023,65,No,
+48,Comcast Corporation,comcast-corp.com,Media Conglomerate,190000+,$120B+,Philadelphia Pennsylvania,"Sky, Universal",Dave Watson,COO,dave@comcast-corp.com,(215) 555-0168,Yes,1,0,Yes,9/27/2023,67,Yes,47
+49,Disney,disney.com,Entertainment,200000+,$80B+,Burbank CA,"ESPN, Marvel",Bob Chapek,CEO,bob@disney.com,(818) 555-0119,Yes,50,5,Yes,10/15/2023,88,No,
+50,Walt Disney Company,disneyworld.com,Media & Parks,200000+,$80B+,Burbank California,"Pixar, Star Wars",Christine McCarthy,CFO,christine@disneyworld.com,(818) 555-0169,No,45,4,No,10/18/2023,86,Yes,
