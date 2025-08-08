@@ -1,4 +1,3 @@
-Oke, ini versi yang sudah aku rapikan dan diberi format Markdown yang konsisten supaya README-mu terlihat profesional di GitHub:
 
 ---
 
@@ -9,8 +8,8 @@ A web application for managing company leads.
 
 It includes:
 
-- **Lead Scoring** with a trained `RandomForestClassifier`
-- **Company Finder** with duplicate detection
+- *Lead Scoring* with a trained `RandomForestClassifier`
+- *Company Finder* with duplicate detection
 - **Interactive Dashboard** showing lead statistics and charts
 - **CSV dataset-based search & filtering**
 
