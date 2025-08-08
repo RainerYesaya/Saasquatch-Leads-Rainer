@@ -1,7 +1,4 @@
 
----
-
-````markdown
 # 🏢 Lead Generation Dashboard
 
 A web application for managing company leads.
@@ -102,7 +99,4 @@ http://127.0.0.1:5000
 
 ```
 
----
 
-Kalau mau, aku juga bisa sekalian tambahkan **Project Structure** di README ini supaya orang yang baca langsung paham isi folder dan file-nya.  
-```
