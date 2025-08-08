@@ -8,26 +8,26 @@ A web application for managing company leads.
 
 It includes:
 
-- *Lead Scoring* with a trained `RandomForestClassifier`
-- *Company Finder* with duplicate detection
-- **Interactive Dashboard** showing lead statistics and charts
-- **CSV dataset-based search & filtering**
+- Lead Scoring with a trained `RandomForestClassifier`
+- Company Finder with duplicate detection
+- Interactive Dashboard showing lead statistics and charts
+- CSV dataset-based search & filtering**
 
 ---
 
 ## 📦 Features
 
-- **Company Search**: Filter companies by industry and location
-- **Lead Management**: Add, view, and remove leads
-- **Duplicate Detection**: Prevents duplicate leads with similarity checking
-- **Lead Scoring Model**: Predicts lead quality using machine learning
-- **Dashboard Analytics**: Displays total leads, average lead score, distribution charts, and top industries
+- Company Search: Filter companies by industry and location
+- Lead Management: Add, view, and remove leads
+- Duplicate Detection: Prevents duplicate leads with similarity checking
+- Lead Scoring Model: Predicts lead quality using machine learning
+- Dashboard Analytics: Displays total leads, average lead score, distribution charts, and top industries
 
 ---
 
 ## ⚙️ Requirements
 
-- Python **3.8+**
+- Python 3.8+
 - `pip` package manager
 
 ---
@@ -36,14 +36,14 @@ It includes:
 
 ### 1️⃣ Clone the repository
 
-```bash
+```
 git clone https://github.com/RainerYesaya/Saasquatch-Leads-Rainer.git
 cd Saasquatch-Leads-Rainer
 ````
 
 ### 2️⃣ Create a virtual environment (optional but recommended)
 
-```bash
+```
 python -m venv venv
 source venv/bin/activate   # On macOS/Linux
 venv\Scripts\activate      # On Windows
@@ -51,7 +51,7 @@ venv\Scripts\activate      # On Windows
 
 ### 3️⃣ Install dependencies
 
-```bash
+```
 pip install -r requirements.txt
 ```
 
@@ -70,7 +70,7 @@ id, company_name, website, industry, company_size, revenue_range, location, tech
 
 Run:
 
-```bash
+```
 python train_model.py
 ```
 
@@ -86,7 +86,7 @@ This will:
 
 Start the Flask server:
 
-```bash
+```
 python app.py
 ```
 
@@ -98,9 +98,7 @@ http://127.0.0.1:5000
 
 ---
 
-## 📜 License
 
-This project is licensed under the MIT License.
 
 ```
 
