@@ -8,7 +8,7 @@ It includes:
 - Lead Scoring with a trained `RandomForestClassifier`
 - Company Finder with duplicate detection
 - Interactive Dashboard showing lead statistics and charts
-- CSV dataset-based search & filtering**
+- CSV dataset-based search & filtering
 
 ---
 
